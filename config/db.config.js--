@@ -1,0 +1,48 @@
+const env = require('./env');
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize(env.database, env.username, env.password, {
+    host: env.host,
+    dialect: env.dialect,
+    operatorsAliases: false,
+
+    pool: {
+        max: env.max,
+        min: env.pool.min,
+        acquire: env.pool.acquire,
+        idle: env.pool.idle
+<<<<<<< .mine
+    },
+    define :{
+        freezeTableName: true
+    }
+||||||| .r11
+    }
+=======
+    },
+    define: {
+        freezeTableName: true
+      }
+>>>>>>> .r14
+});
+
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.module = require('../models/Module')(sequelize, Sequelize);
+
+db.type_authentication = require('../models/TypeAuthentication')(sequelize, Sequelize);
+
+
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
+
+module.exports = db;
