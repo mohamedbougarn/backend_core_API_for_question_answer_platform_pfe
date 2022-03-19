@@ -1,6 +1,6 @@
 # core
 
-This project was generated with node version 11.2.11.
+This project was generated with node version 14.17.5.
 
 ## Development server
 
