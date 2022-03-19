@@ -7,12 +7,12 @@
 
 # dependencies
 node_modules
-intelligence/node_modules
-TTS/node_modules
+
 
 # IDEs and editors
 /.idea
 .project
+.env
 .classpath
 .c9/
 *.launch
