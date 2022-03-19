@@ -13,6 +13,7 @@ TTS/node_modules
 # IDEs and editors
 /.idea
 .project
+.env
 .classpath
 .c9/
 *.launch
