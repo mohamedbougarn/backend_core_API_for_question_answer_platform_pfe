@@ -5,11 +5,11 @@ const logger = require('../config/logger');
 
 const Context_conversationGet =(request, response) => {
 
-    // p_id_context =request.body.id_context;
+     p_id_context =request.body.id_context;
     // p_id_client = request.body.id_client;
-    db.sequelize.query('SELECT * FROM ctl_context_convertation_select() ',
+    db.sequelize.query('SELECT * FROM ctl_context_convertation_select(:id_context) ',
 
-        { replacements: {}, type: db.sequelize.QueryTypes.SELECT },
+        { replacements: {id_context:p_id_context}, type: db.sequelize.QueryTypes.SELECT },
         {
             model: context_conversation,
             mapToModel: true // pass true here if you have any mapped fields
