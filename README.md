@@ -62,8 +62,6 @@ Open `core/config/` then edit it with your settings. You will need:
 
 ## Simple build for production
 
-<<<<<<< HEAD
     $ node build
-=======
-    $ node build
->>>>>>> ae2d9d3424221b3ea2cd6d70dad476b1a33ec297
+
+
