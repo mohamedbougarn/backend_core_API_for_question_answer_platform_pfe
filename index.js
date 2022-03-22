@@ -44,6 +44,46 @@ var server = app.listen(port, function() {
 
 
 
+
+
+
+/*############# test upload image ###############*/ 
+
+const multer = require("multer");
+const PATH = './upload_img';
+
+
+
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, PATH);
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+let upload = multer({
+  storage: storage
+});
+
+// POST File
+app.post('/api/upload', upload.single('image'), function (req, res) {  ///api/upload
+  if (!req.file) {
+    console.log("no File is available !");
+    return res.send({
+      success: false
+    });
+  } else {
+    console.log('File is available !');
+    return res.send({
+      success: true
+    })
+  }
+});
+
+
+/**########## end test upload ############ */
+
 app.get ('/',  function (req, res){
     res.Send("helloooooo !!");
 })
