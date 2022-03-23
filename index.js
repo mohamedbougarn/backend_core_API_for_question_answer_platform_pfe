@@ -19,8 +19,9 @@ app.use(Cors());
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");//
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     next();
   });
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,6 +34,47 @@ app.use(function(req, res, next) {
   })
 
   db.Sequelize;
+
+  /*############# test upload image ###############*/ 
+
+const multer = require("multer");
+const PATH = 'public/images';
+//const PATH = 'upload_img';
+
+
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, PATH);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.originalname}`)// + '-' + Date.now() //${Date.now()}_
+  } 
+});
+var upload = multer({
+  storage: storage
+});
+
+// POST File
+app.post('/api/upload', upload.single('image'),(req, res)=> {  ///api/upload
+  console.log('api runing succ')
+  if (!req.file) {
+    console.log("no File is available !");
+    return res.send({
+      success: false
+    });
+  } else {
+    console.log('File is available !');
+    //res.json(req.file)
+    return res.send({
+      success: true
+    })
+  }
+});
+
+
+/**########## end test upload ############ */
 
   require('./routes/Routes.js')(app);
 
@@ -47,42 +89,7 @@ var server = app.listen(port, function() {
 
 
 
-/*############# test upload image ###############*/ 
 
-const multer = require("multer");
-const PATH = './upload_img';
-
-
-
-let storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, PATH);
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-});
-let upload = multer({
-  storage: storage
-});
-
-// POST File
-app.post('/api/upload', upload.single('image'), function (req, res) {  ///api/upload
-  if (!req.file) {
-    console.log("no File is available !");
-    return res.send({
-      success: false
-    });
-  } else {
-    console.log('File is available !');
-    return res.send({
-      success: true
-    })
-  }
-});
-
-
-/**########## end test upload ############ */
 
 app.get ('/',  function (req, res){
     res.Send("helloooooo !!");
