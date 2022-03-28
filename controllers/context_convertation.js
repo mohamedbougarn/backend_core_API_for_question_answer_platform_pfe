@@ -48,9 +48,31 @@ const Context_conversationAdd =(request, response) => {
 };
 
 
+const Context_conversationUpload =(request, response) => {
+
+    p_id_context = request.body.id_context;
+    p_photo = request.body.photo;
+
+    db.sequelize.query('SELECT * FROM ctl_context_convertation_add_photo(:id_context ,:photo)',
+
+        { replacements: {id_context:p_id_context,photo:p_photo}, type: db.sequelize.QueryTypes.SELECT },
+        {
+            model: context_conversation,
+            mapToModel: true // pass true here if you have any mapped fields
+        }).then(context_conversation => {
+        logger.info(context_conversation)
+        response.json(context_conversation)
+    }).catch(err => {
+
+        logger.error(err)
+        response.status(500).json({msg: "error", details: err});
+    });
+
+};
 
 
 module.exports = {
     Context_conversationAdd,
-    Context_conversationGet
+    Context_conversationGet,
+    Context_conversationUpload
 }
