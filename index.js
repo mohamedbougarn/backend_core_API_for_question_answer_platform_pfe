@@ -29,15 +29,23 @@ app.use(function(req, res, next) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
+
+  // Function to serve all static files
+// inside public directory.
+app.use(express.static('public')); 
+app.use('/public/images', express.static('public/images'));
+
   app.get('/', (req, res) => {
     res.send('Hello World!')
   })
+
 
   db.Sequelize;
 
   /*############# test upload image ###############*/ 
 
 const multer = require("multer");
+const context = require('./routes/context');
 const PATH = 'public/images';
 //const PATH = 'upload_img';
 
@@ -55,7 +63,7 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage
 });
-
+// const fileAdd = require('./controllers/context_convertation.js')
 // POST File
 app.post('/api/upload', upload.single('image'),(req, res)=> {  ///api/upload
   console.log('api runing succ')
@@ -67,21 +75,32 @@ app.post('/api/upload', upload.single('image'),(req, res)=> {  ///api/upload
   } else {
     console.log('File is available !');
     //res.json(req.file)
-    return res.send({
-      success: true
-    })
+
+    console.log(req.file['path']);
+    let path = req.file['path'];
+    //let contextId = req.params.id_context;
+    //file = fileAdd.Context_conversationUpload(contextId,path);
+
+
+     return res.json(req.file)
+
+    
   }
 });
 
 
+
 /**########## end test upload ############ */
+
+
 
   require('./routes/Routes.js')(app);
 
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
-  logger.info('Express server listening on port ' + port);
+  logger.info('Express server listening on port '+ port);
+  //console.log('dirname' ,__dirname)
 });
 
 
