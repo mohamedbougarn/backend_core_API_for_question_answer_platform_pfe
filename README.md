@@ -1,4 +1,4 @@
-<img src="https://shop.quadra-informatique.fr/img/cms/node-js-logo.png" width=296 height=335 align="right">
+<img src="https://w7.pngwing.com/pngs/780/57/png-transparent-node-js-javascript-database-mongodb-native-miscellaneous-text-trademark.png" width=296 height=335 align="right">
 # core
 
 This project was generated with node version 14.17.5.
