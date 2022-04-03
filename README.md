@@ -1,4 +1,4 @@
-<img src="https://mpng.subpng.com/20180425/jrw/kisspng-node-js-javascript-web-application-express-js-comp-5ae0f84e2a4242.1423638015246930701731.jpg" width=300 height=300 align="right">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/885px-Node.js_logo.svg.png" width=650 height=350 align="right">
 # core
 
 This project was generated with node version 14.17.5.
