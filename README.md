@@ -1,4 +1,4 @@
-<img src="https://www.pinclipart.com/picdir/big/102-1024697_related-wallpapers-node-js-logo-png-clipart.png" width=296 height=335 align="right">
+<img src="https://mpng.subpng.com/20180425/jrw/kisspng-node-js-javascript-web-application-express-js-comp-5ae0f84e2a4242.1423638015246930701731.jpg" width=300 height=300 align="right">
 # core
 
 This project was generated with node version 14.17.5.
