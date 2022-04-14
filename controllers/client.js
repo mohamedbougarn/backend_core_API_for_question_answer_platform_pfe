@@ -81,8 +81,33 @@ const Clientlogin =(request, response) => {
 
 };
 
+
+
+
+const Clientcount =(request, response) => {
+
+    //p_id_client = request.body.id_client;
+
+    db.sequelize.query('SELECT * FROM ctl_count_client()',
+
+        { replacements: {}, type: db.sequelize.QueryTypes.SELECT },
+        {
+            model: client,
+            mapToModel: true // pass true here if you have any mapped fields
+        }).then(client => {
+        logger.info(client)
+        response.json(client)
+    }).catch(err => {
+
+        logger.error(err)
+        response.status(500).json({msg: "error", details: err});
+    });
+
+};
+
 module.exports = {
     ClientGet,
     ClientAdd,
-    Clientlogin
+    Clientlogin,
+    Clientcount
 }
