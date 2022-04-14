@@ -93,8 +93,34 @@ const Context_conversationUpload =(request, response) => {
 };
 
 
+
+
+const Context_ConversationCount =(request, response) => {
+
+    p_id_client =request.body.id_client;
+   // p_id_client = request.body.id_client;
+   db.sequelize.query('SELECT * FROM ctl_count_context_convertation_select(:id_client) ',
+
+       { replacements: {id_client:p_id_client}, type: db.sequelize.QueryTypes.SELECT },
+       {
+           model: context_conversation,
+           mapToModel: true // pass true here if you have any mapped fields
+       }).then(context_conversation => {
+       logger.info(context_conversation)
+       response.json(context_conversation)
+   }).catch(err => {
+
+       logger.error(err)
+       response.status(500).json({msg: "error", details: err});
+   });
+
+};
+
+
+
 module.exports = {
     Context_conversationAdd,
     Context_conversationGet,
-    Context_conversationUpload
+    Context_conversationUpload,
+    Context_ConversationCount
 }
