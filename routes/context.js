@@ -5,5 +5,6 @@ module.exports = function(app) {
     app.put('/context/get',context.ContextGetbyId);
     app.put('/context/add', context.ContextAdd);
     app.put('/context/count', context.ContextCountbyId);
+    app.put('/context/type/update',context.ContextAdd);
 
 }

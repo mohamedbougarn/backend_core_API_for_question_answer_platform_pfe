@@ -27,13 +27,15 @@ const ContextGetbyId =(request, response) => {
 
 const ContextAdd =(request, response) => {
 
+    p_id_context = request.body.id_context;
     p_title = request.body.title;
     p_text = request.body.text;
     p_id_client = request.body.id_client;
+    p_type = request.body.type;
 
-    db.sequelize.query('SELECT * FROM ctl_context_add(:text , :id_client,:title) ',
+    db.sequelize.query('SELECT * FROM ctl_context_add(:id_context,:text , :id_client,:title,:type) ',
 
-        { replacements: {text:p_text,id_client:p_id_client,title:p_title}, type: db.sequelize.QueryTypes.SELECT },
+        { replacements: {id_context:p_id_context,text:p_text,id_client:p_id_client,title:p_title ,type:p_type}, type: db.sequelize.QueryTypes.SELECT },
         {
             model: context,
             mapToModel: true // pass true here if you have any mapped fields
