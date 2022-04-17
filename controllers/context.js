@@ -1,3 +1,4 @@
+
 const  db=require('../config/db.config.js');
 const context = db.context;
 const logger = require('../config/logger');
@@ -72,10 +73,29 @@ const ContextCountbyId =(request, response) => {
 
 };
 
+const ContextAllUser = (request, response) =>
+{
+    //p_id_context =request.body.id_context;
+    //p_id_client = request.body.id_client;
+    db.sequelize.query('SELECT * FROM ctl_context_select_for_all_user()',
 
+        { replacements: {}, type: db.sequelize.QueryTypes.SELECT },
+        {
+            model: context,
+            mapToModel: true // pass true here if you have any mapped fields
+        }).then(context => {
+        logger.info(context)
+        response.json(context)
+    }).catch(err => {
+
+        logger.error(err)
+        response.status(500).json({msg: "error", details: err});
+    });
+};
 
 module.exports = {
     ContextGetbyId,
     ContextAdd,
-    ContextCountbyId
+    ContextCountbyId,
+    ContextAllUser
 }
