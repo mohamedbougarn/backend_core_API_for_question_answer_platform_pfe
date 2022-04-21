@@ -7,6 +7,7 @@ module.exports = function(app) {
     require('./q_r')(app);
     require('./treatment')(app);
     require('./langue')(app)
+    require('./visiteur')(app)
 
    
 
