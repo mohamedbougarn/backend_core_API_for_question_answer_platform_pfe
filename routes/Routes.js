@@ -6,8 +6,9 @@ module.exports = function(app) {
     require('./client')(app);
     require('./q_r')(app);
     require('./treatment')(app);
-    require('./langue')(app)
-    require('./visiteur')(app)
+    require('./langue')(app);
+    require('./visiteur')(app);
+    require('./stat')(app);
 
    
 
