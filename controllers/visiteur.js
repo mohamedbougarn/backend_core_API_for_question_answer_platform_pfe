@@ -7,7 +7,7 @@ const Visiteur_Context_conversationGet = (req, res)=>
 {
     p_id_context =req.body.id_context;
     // p_id_client = request.body.id_client;
-    db.sequelize.query('SELECT * FROM ctl_context_convertation_select(:id_context) ',
+    db.sequelize.query('SELECT * FROM ctl_visiteur_conversation_select(:id_context)',
 
         { replacements: {id_context:p_id_context}, type: db.sequelize.QueryTypes.SELECT },
         {
@@ -30,11 +30,11 @@ const Visiteur_Context_conversationAdd =(request, response) => {
 
     p_id_context = request.body.id_context;
     p_question = request.body.question;
-    p_response = request.body.response;
+   // p_response = request.body.response;
 
-    db.sequelize.query('SELECT * FROM ctl_visiteur_context_convertation_add(:id_context , :question, :response) ',
+    db.sequelize.query('SELECT * FROM ctl_visiteur_context_conversation_add(:id_context , :question) ',
 
-        { replacements: {id_context:p_id_context,question:p_question,response:p_response}, type: db.sequelize.QueryTypes.SELECT },
+        { replacements: {id_context:p_id_context,question:p_question}, type: db.sequelize.QueryTypes.SELECT },
         {
             model: visiteur_conversation,
             mapToModel: true // pass true here if you have any mapped fields
