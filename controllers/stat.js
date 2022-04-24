@@ -5,11 +5,11 @@ const logger = require('../config/logger');
 
 const Stat_msg_DateGet = (req, res)=>
 {
-    p_id_context =req.body.id_context;
+    //p_id_context =req.body.id_context;
     // p_id_client = request.body.id_client;
-    db.sequelize.query('SELECT * FROM ctl_stat_message_date_select(:id_context) ',
+    db.sequelize.query('SELECT * FROM ctl_stat_message_date_select() ',
 
-        { replacements: {id_context:p_id_context}, type: db.sequelize.QueryTypes.SELECT },
+        { replacements: {}, type: db.sequelize.QueryTypes.SELECT },
         {
             model: stat,
             mapToModel: true // pass true here if you have any mapped fields
