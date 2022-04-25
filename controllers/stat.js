@@ -25,33 +25,34 @@ const Stat_msg_DateGet = (req, res)=>
 }
 
 
-// //execute after the tretement.js add responce  
-// const Visiteur_Context_conversationAdd =(request, response) => {
+//execute after the tretement.js add responce  
+const Top_msg_per_title =(request, response) => {
 
-//     p_id_context = request.body.id_context;
-//     p_question = request.body.question;
-//     //p_response = request.body.response;
+    p_id_client = request.body.id_client;
+    p_top = request.body.top;
+    //p_response = request.body.response;
 
-//     db.sequelize.query('SELECT * FROM ctl_visiteur_context_convertation_add(:id_context , :question, :response) ',
+    db.sequelize.query('select * from ctl_top_countmsg_per_title_select(:id_clinet , :top)',
 
-//         { replacements: {id_context:p_id_context,question:p_question,response:p_response}, type: db.sequelize.QueryTypes.SELECT },
-//         {
-//             model: visiteur_conversation,
-//             mapToModel: true // pass true here if you have any mapped fields
-//         }).then(visiteur_conversation => {
-//         logger.info(visiteur_conversation)
-//         response.json(visiteur_conversation)
-//     }).catch(err => {
+        { replacements: {id_client:p_id_client,top:p_top}, type: db.sequelize.QueryTypes.SELECT },
+        {
+            model: stat,
+            mapToModel: true // pass true here if you have any mapped fields
+        }).then(stat => {
+        logger.info(stat)
+        response.json(stat)
+    }).catch(err => {
 
-//         logger.error(err)
-//         response.status(500).json({msg: "error", details: err});
-//     });
+        logger.error(err)
+        response.status(500).json({msg: "error", details: err});
+    });
 
-// };
+};
 
 
 
 
 module.exports = {
     Stat_msg_DateGet,
+    Top_msg_per_title
 }
