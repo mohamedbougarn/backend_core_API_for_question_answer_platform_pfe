@@ -25,14 +25,14 @@ const Stat_msg_DateGet = (req, res)=>
 }
 
 
-//execute after the tretement.js add responce  
+//execute after the stat.js get count message per title  
 const Top_msg_per_title =(request, response) => {
 
     p_id_client = request.body.id_client;
     p_top = request.body.top;
     //p_response = request.body.response;
 
-    db.sequelize.query('select * from ctl_top_countmsg_per_title_select(:id_clinet , :top)',
+    db.sequelize.query('SELECT * FROM ctl_top_countmsg_per_title_select(:id_client, :top)',
 
         { replacements: {id_client:p_id_client,top:p_top}, type: db.sequelize.QueryTypes.SELECT },
         {
