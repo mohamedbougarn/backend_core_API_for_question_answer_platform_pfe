@@ -57,8 +57,8 @@ const Top_contextmsg_per_month =(request, response) => {
     p_month = request.body.month
     p_top = request.body.top;
     //p_response = request.body.response;
-
-    db.sequelize.query('SELECT * FROM ctl_top_countmsg_per_title_select(:id_client,:month ,:top)',
+    console.log(" id clinet = ",p_id_client)
+    db.sequelize.query('SELECT * FROM ctl_top_counttitlemsg_per_month_select(:id_client,:month ,:top)',
 
         { replacements: {id_client:p_id_client,month:p_month,top:p_top}, type: db.sequelize.QueryTypes.SELECT },
         {
