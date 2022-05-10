@@ -3,6 +3,7 @@ module.exports = function(app) {
     
    
     app.put('/api/add',api.api_Add);
+    app.put('/api/get',api.api_Get);
     
 
 
