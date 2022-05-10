@@ -9,6 +9,7 @@ module.exports = function(app) {
     require('./langue')(app);
     require('./visiteur')(app);
     require('./stat')(app);
+    require('./api')(app);
 
    
 
