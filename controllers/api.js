@@ -30,7 +30,7 @@ const api_Get =(request, response) => {
     p_id_client =request.body.id_client;
     // p_key = request.body.key;
     
-   db.sequelize.query('SELECT * FROM ctl_api_get(:id_client) ',
+   db.sequelize.query('SELECT * FROM ctl_api_select(:id_client)',
 
        { replacements: {id_client:p_id_client}, type: db.sequelize.QueryTypes.SELECT },
        {
