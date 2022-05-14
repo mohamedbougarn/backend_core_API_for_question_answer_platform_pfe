@@ -35,7 +35,36 @@ const GetTextResponse = async(request, response) => {
 
 
 
+const GetGPT_3 = async(request, response) => {
+
+
+    p_question = request.body.question;
+    console.log('params params    ')
+    console.log(p_question)
+    console.log('params params    ')
+
+    resp = await axios.post('http://127.0.0.1:5000/get/gpt3',{question:p_question})
+
+   
+    if(resp && resp.data)
+    {
+        result = resp.data;
+        console.log(result)
+        //return result['response']
+        //return result//.final_text
+        response.json(result)
+    }
+
+    else
+
+     return null
+    //response.cancel();
+
+};
+
+
 module.exports = {
-    GetTextResponse
+    GetTextResponse,
+    GetGPT_3
 }
 
