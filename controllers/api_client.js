@@ -47,6 +47,47 @@ console.log('2222222222222222222222222222222222222222222')
 
 };
 
+
+const  GeteResponseGPT_3 = async (request, response ) => //, response 
+{
+
+    key = request.body.key;
+    question = request.body.question;
+
+    console.log(('verif key'))
+           const veri_key = await  axios.put(URL+'/api/verif',{key});         
+    
+    console.log('verif key ok ')
+
+         if(veri_key && veri_key.data && veri_key.data[0].ctl_verif_key == true)
+            
+         {
+           let context = context_text.data[0].text ;
+            result  = await axios.post(URL+'/treatment/text',{context,question});
+            //console.log(result)
+
+         }
+    
+console.log('2222222222222222222222222222222222222222222')
+    if(result && result.data )
+
+    {
+        var ddd = result.data;
+
+        console.log('dddddddddddddddddddddddd');
+        console.log(ddd)
+         response.send  (ddd)
+    }
+
+  else 
+
+  {
+      response.send (null)
+  }
+   
+
+};
+
 module.exports = {
     GeteResponseContext
 }
