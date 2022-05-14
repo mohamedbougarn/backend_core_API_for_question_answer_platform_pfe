@@ -10,6 +10,8 @@ module.exports = function(app) {
     require('./visiteur')(app);
     require('./stat')(app);
     require('./api')(app);
+    require('./api_client')(app);
+
 
    
 
