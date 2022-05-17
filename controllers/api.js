@@ -73,6 +73,34 @@ const api_verif_key = (request, response) =>
 };
 
 
+
+
+const api_verif1_key = (request, response) => 
+{
+    
+    p_key = request.body.key;
+    
+   db.sequelize.query('SELECT * FROM ctl_verif1_key(:key)',
+
+       { replacements: {key:p_key}, type: db.sequelize.QueryTypes.SELECT },
+       {
+           model: api,
+           mapToModel: true // pass true here if you have any mapped fields
+       }).then(api => {
+       logger.info(api)
+       response.json(api)
+   }).catch(err => {
+
+       logger.error(err)
+       response.status(500).json({msg: "error", details: err});
+   });
+
+};
+
+
+
+
+
 const getcontext =(request, response) => {
 
     p_id_context =request.body.id_context;
@@ -93,13 +121,35 @@ const getcontext =(request, response) => {
 
 };
 
+//get context with id client and id context  
+const getcontext1 =(request, response) => {
 
+    p_id_context =request.body.id_context;
+    p_id_client =request.body.id_client;
 
+    db.sequelize.query('SELECT * FROM ctl_context_select1(:id_context,:id_client) ',
+
+        { replacements: {id_context:p_id_context,id_client:p_id_client}, type: db.sequelize.QueryTypes.SELECT },
+        {
+            model: context,
+            mapToModel: true // pass true here if you have any mapped fields
+        }).then(context => {
+        logger.info(context)
+        response.json(context)
+    }).catch(err => {
+
+        logger.error(err)
+        response.status(500).json({msg: "error", details: err});
+    });
+
+};
 
 
 module.exports = {
     api_Add,
     api_Get,
     api_verif_key,
-    getcontext
+    api_verif1_key,
+    getcontext,
+    getcontext1
 }
