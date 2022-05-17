@@ -21,9 +21,18 @@ console.log(('00000000000000000000000000000'))
          if(veri_key && veri_key.data && veri_key.data[0].ctl_verif_key == true && context_text && context_text.data &&context_text.data[0].text.length > 0)
             
          {
+             console.log('1.2.1.1.1.')
            let context = context_text.data[0].text ;
             result  = await axios.post(URL+'/treatment/text',{context,question});
             //console.log(result)
+
+         }
+         else
+         {
+            console.log('verif API KEY ', veri_key, "context text = ",context_text);
+           // response.send('verif API KEY = '+veri_key.data[0].ctl_verif_key);
+           //response.JSON(veri_key.data[0].ctl_verif_key);
+           response.status(500).json({msg: "error", API_KEY: veri_key.data[0].ctl_verif_key});
 
          }
     
@@ -76,7 +85,7 @@ console.log('2222222222222222222222222222222222222222222')
 
         console.log('dddddddddddddddddddddddd');
         console.log(ddd)
-         response.send  (ddd)
+         response.send(ddd)
     }
 
   else 
@@ -89,6 +98,7 @@ console.log('2222222222222222222222222222222222222222222')
 };
 
 module.exports = {
-    GeteResponseContext
+    GeteResponseContext,
+    GeteResponseGPT_3
 }
 
