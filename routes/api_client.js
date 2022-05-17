@@ -5,6 +5,6 @@ module.exports = function(app) {
     
    
     app.put('/api/getresponse/context',apiclient.GeteResponseContext);
-
+    app.put('/api/getresponse/gpt3',apiclient.GeteResponseGPT_3);
 
 }
