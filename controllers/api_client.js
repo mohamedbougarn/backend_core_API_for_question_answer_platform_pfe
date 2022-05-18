@@ -115,7 +115,56 @@ const  GeteResponseGPT_3 = async (request, response ) => //, response
 
 
 
+const  GetResponsewiki = async (request, response ) => //, response 
+{
 
+    key = request.body.key;
+    question = request.body.question;
+    lang=request.body.lang;
+
+    console.log(('verif key'))
+           const veri_key = await  axios.put(URL+'/api/verif1',{key});         
+    
+    console.log('verif key ok ',veri_key.data)
+
+         if(veri_key && veri_key.data && veri_key.data[0].ok == true) 
+         {
+           //let context = context_text.data[0].text ;
+            result  = await axios.post(URL+'/treatment/wiki',{question,lang});
+            //console.log(result)
+
+            console.log('2222222222222222222222222222222222222222222')
+            if(result && result.data )
+
+            {
+                var ddd = result.data;
+
+                console.log('dddddddddddddddddddddddd');
+                console.log(ddd)
+                response.send(ddd)
+            }
+
+            else 
+
+            {
+                response.status(500).json({msg: "error", API_KEY: veri_key.data[0].ok});
+                //response.send (null)
+            }
+        
+
+         }
+         else
+         {
+            console.log('verif API KEY ', veri_key.data);
+           // response.send('verif API KEY = '+veri_key.data[0].ctl_verif_key);
+           //response.JSON(veri_key.data[0].ctl_verif_key);
+           response.status(500).json({msg: "error", API_KEY: veri_key.data[0].ok});
+
+         }
+    
+
+
+};
 
 
 
@@ -123,6 +172,7 @@ const  GeteResponseGPT_3 = async (request, response ) => //, response
 
 module.exports = {
     GeteResponseContext,
-    GeteResponseGPT_3
+    GeteResponseGPT_3,
+    GetResponsewiki
 }
 
