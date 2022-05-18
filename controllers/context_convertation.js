@@ -48,27 +48,40 @@ const Context_conversationAdd =(request, response) => {
 
 };
 
-// const Context_conversationAdd =(request, response) => {
 
-//     p_id_context = request.body.id_context;
-//     p_question = request.body.question;
 
-//     db.sequelize.query('SELECT * FROM ctl_context_convertation_add(:id_context , :question) ',
+const Context_conversationforApiAdd =(request, response) => {
 
-//         { replacements: {id_context:p_id_context,question:p_question}, type: db.sequelize.QueryTypes.SELECT },
-//         {
-//             model: context_conversation,
-//             mapToModel: true // pass true here if you have any mapped fields
-//         }).then(context_conversation => {
-//         logger.info(context_conversation)
-//         response.json(context_conversation)
-//     }).catch(err => {
+    p_id_context = request.body.id_context;
+    p_question = request.body.question;
+    p_response = request.body.response;
+    p_key=request.body.key;
+    p_model=request.body.model;
+    p_langue=request.body.langue
 
-//         logger.error(err)
-//         response.status(500).json({msg: "error", details: err});
-//     });
+    db.sequelize.query('SELECT * FROM ctl_context_convertation_stat_add(:id_context ,:question,:response,:key,:model,:langue ) ',
 
-// };
+        { replacements: {id_context:p_id_context,
+            question:p_question,
+            response:p_response,
+            key:p_key,
+            model:p_model,
+            langue:p_langue
+        }, type: db.sequelize.QueryTypes.SELECT },
+        {
+            model: context_conversation,
+            mapToModel: true // pass true here if you have any mapped fields
+        }).then(context_conversation => {
+        logger.info(context_conversation)
+        response.json(context_conversation)
+    }).catch(err => {
+
+        logger.error(err)
+        response.status(500).json({msg: "error", details: err});
+    });
+
+};
+
 
 const Context_conversationUpload =(request, response) => {
 
@@ -122,5 +135,6 @@ module.exports = {
     Context_conversationAdd,
     Context_conversationGet,
     Context_conversationUpload,
-    Context_ConversationCount
+    Context_ConversationCount,
+    Context_conversationforApiAdd
 }
