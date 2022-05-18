@@ -63,8 +63,42 @@ const GetGPT_3 = async(request, response) => {
 };
 
 
+
+
+
+
+const GetWiki = async(request, response) => {
+
+
+    question = request.body.question;
+    lang = request.body.lang;
+
+    console.log('params params    ')
+    console.log(question,lang)
+    console.log('params params    ')
+
+    resp = await axios.post('http://127.0.0.1:5000/wiki/question',{question:question,lang:lang})
+
+   
+    if(resp && resp.data)
+    {
+        result = resp.data;
+        console.log(result)
+        //return result['response']
+        //return result//.final_text
+        response.json(result)
+    }
+
+    else
+
+     return null
+    //response.cancel();
+
+};
+
 module.exports = {
     GetTextResponse,
-    GetGPT_3
+    GetGPT_3,
+    GetWiki
 }
 
