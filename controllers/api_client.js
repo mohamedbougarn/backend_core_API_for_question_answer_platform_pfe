@@ -11,6 +11,7 @@ const  GeteResponseContext= async (request, response ) => //, response
     key = request.body.key;
     id_context = request.body.id_context;
     question = request.body.question;
+    lang=request.body.lang;
 
 
 console.log(('00000000000000000000000000000'))
@@ -30,11 +31,13 @@ console.log(('00000000000000000000000000000'))
             if(result && result.data )
 
             {
+                model='Bert';
+                answer= result.data.response;
                 var ddd = result.data;
-
+                await axios.put(URL+'/context_conversation/api/add',{id_context,key,model,lang,question,answer}); 
                 console.log('dddddddddddddddddddddddd');
                 console.log(ddd)
-                response.send  (ddd)
+                response.send(ddd)
             }
 
             else 
@@ -61,9 +64,9 @@ console.log(('00000000000000000000000000000'))
 };
 
 
-const  GeteResponseGPT_3 = async (request, response ) => //, response 
+const  GeteResponseGPT_3 = async (request, res ) => //, response 
 {
-
+    
     key = request.body.key;
     question = request.body.question;
     lang=request.body.lang;
@@ -83,17 +86,23 @@ const  GeteResponseGPT_3 = async (request, response ) => //, response
             if(result && result.data )
 
             {
-                var ddd = result.data;
 
+                id_context = '0';
+                model='GPT 3';
+                answer= result.data.response;
+                
+                
+                var ddd = result.data;
+                await  axios.put(URL+'/context_conversation/api/add',{id_context,key,model,lang,question,answer}); 
                 console.log('dddddddddddddddddddddddd');
                 console.log(ddd)
-                response.send(ddd)
+                res.send(ddd)
             }
 
             else 
 
             {
-                response.status(500).json({msg: "error", API_KEY: veri_key.data[0].ok});
+                res.status(500).json({msg: "error", API_KEY: veri_key.data[0].ok});
                 //response.send (null)
             }
         
@@ -104,7 +113,7 @@ const  GeteResponseGPT_3 = async (request, response ) => //, response
             console.log('verif API KEY ', veri_key.data);
            // response.send('verif API KEY = '+veri_key.data[0].ctl_verif_key);
            //response.JSON(veri_key.data[0].ctl_verif_key);
-           response.status(500).json({msg: "error", API_KEY: veri_key.data[0].ok});
+           res.status(500).json({msg: "error", API_KEY: veri_key.data[0].ok});
 
          }
     
@@ -137,8 +146,11 @@ const  GetResponsewiki = async (request, response ) => //, response
             if(result && result.data )
 
             {
+                id_context = '0';
+                model='Wikipedia';
+                answer= result.data.answer;
                 var ddd = result.data;
-
+                await  axios.put(URL+'/context_conversation/api/add',{id_context,key,model,lang,question,answer}); 
                 console.log('dddddddddddddddddddddddd');
                 console.log(ddd)
                 response.send(ddd)
