@@ -54,19 +54,19 @@ const Context_conversationforApiAdd =(request, response) => {
 
     p_id_context = request.body.id_context;
     p_question = request.body.question;
-    p_response = request.body.response;
+    p_answer = request.body.answer;
     p_key=request.body.key;
     p_model=request.body.model;
-    p_langue=request.body.langue
+    p_langue=request.body.lang
 
-    db.sequelize.query('SELECT * FROM ctl_context_convertation_stat_add(:id_context ,:question,:response,:key,:model,:langue ) ',
+    db.sequelize.query('SELECT * FROM ctl_context_convertation_stat_add(:id_context ,:question,:answer,:key,:model,:lang ) ',
 
         { replacements: {id_context:p_id_context,
             question:p_question,
-            response:p_response,
+            answer:p_answer,
             key:p_key,
             model:p_model,
-            langue:p_langue
+            lang:p_langue
         }, type: db.sequelize.QueryTypes.SELECT },
         {
             model: context_conversation,
