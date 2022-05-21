@@ -1,6 +1,7 @@
 const  db=require('../config/db.config.js');
 const api = db.api;
 const context =db.api; 
+const context_conversation =db.context_conversation;
 const logger = require('../config/logger');
 
 
@@ -145,11 +146,33 @@ const getcontext1 =(request, response) => {
 };
 
 
+const api_Count =(request, response) => {
+
+    p_id_client =request.body.id_client;
+   // p_id_client = request.body.id_client;
+   db.sequelize.query('SELECT * FROM ctl_count_api(:id_client)',
+
+       { replacements: {id_client:p_id_client}, type: db.sequelize.QueryTypes.SELECT },
+       {
+           model: context_conversation,
+           mapToModel: true // pass true here if you have any mapped fields
+       }).then(context_conversation => {
+       logger.info(context_conversation)
+       response.json(context_conversation)
+   }).catch(err => {
+
+       logger.error(err)
+       response.status(500).json({msg: "error", details: err});
+   });
+
+};
+
 module.exports = {
     api_Add,
     api_Get,
     api_verif_key,
     api_verif1_key,
     getcontext,
-    getcontext1
+    getcontext1,
+    api_Count
 }
