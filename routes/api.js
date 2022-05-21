@@ -8,6 +8,7 @@ module.exports = function(app) {
     app.put('/api/verif1',api.api_verif1_key);
     app.put('/api/getcontext',api.getcontext);
     app.put('/api/getcontext1',api.getcontext1);
+    app.put('/api/count',api.api_Count);
 
 
 
