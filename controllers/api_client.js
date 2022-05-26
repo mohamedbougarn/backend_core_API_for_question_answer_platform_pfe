@@ -79,7 +79,7 @@ const  GeteResponseGPT_3 = async (request, res ) => //, response
          if(veri_key && veri_key.data && veri_key.data[0].ok == true) 
          {
            //let context = context_text.data[0].text ;
-            result  = await axios.post(URL+'/treatment/gpt3',{question});
+            result  = await axios.post(URL+'/treatment/gpt3',{question,lang});
             //console.log(result)
 
             console.log('2222222222222222222222222222222222222222222')
