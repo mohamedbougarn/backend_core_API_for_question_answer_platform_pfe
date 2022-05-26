@@ -39,11 +39,12 @@ const GetGPT_3 = async(request, response) => {
 
 
     p_question = request.body.question;
+    p_lang = request.body.lang;
     console.log('params params    ')
-    console.log(p_question)
+    console.log(p_question,p_lang)
     console.log('params params    ')
 
-    resp = await axios.post('http://127.0.0.1:5000/get/gpt3',{question:p_question})
+    resp = await axios.post('http://127.0.0.1:5000/get/gpt3',{question:p_question,lang:p_lang})
 
    
     if(resp && resp.data)
@@ -61,8 +62,6 @@ const GetGPT_3 = async(request, response) => {
     //response.cancel();
 
 };
-
-
 
 
 
