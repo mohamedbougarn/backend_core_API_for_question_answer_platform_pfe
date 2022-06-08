@@ -6,5 +6,7 @@ module.exports = function(app)
     app.put('/login', client.Clientlogin);
     app.put('/client/get', client.ClientGet);//pas verifier
     app.put('/client/count', client.Clientcount);
-
+    app.put('/client/update', client.ClientUpdate);
+   
+    
 }
