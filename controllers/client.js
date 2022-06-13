@@ -110,21 +110,22 @@ const Clientcount =(request, response) => {
  */
  const ClientUpdate =(request, response) => {
 
-    p_id_client=request.body.id_client;
+    p_id_client = request.body.id_client;
     p_nom_client = request.body.nom_client;
     p_prenom_client = request.body.prenom_client;
     p_mobile_client = request.body.mobile_client;
     p_email_client = request.body.email_client;
-    p_password_client = request.body.password_client;
+    p_password = request.body.password_client;
 
-    db.sequelize.query('SELECT * FROM ctl_client_add(:nom_client , :prenom_client , :mobile_client ,:email_client , :password_client) ',
+    db.sequelize.query('SELECT * FROM ctl_client_update(:id_client,:nom_client , :prenom_client , :mobile_client ,:email_client , :password_client) ',
 
         { replacements: {
+            id_client:p_id_client,
             nom_client:p_nom_client, 
             prenom_client:p_prenom_client, 
             mobile_client:p_mobile_client, 
             email_client:p_email_client, 
-            password_client :p_password_client
+            password_client :p_password   
         }, type: db.sequelize.QueryTypes.SELECT },
         {
             model: client,
