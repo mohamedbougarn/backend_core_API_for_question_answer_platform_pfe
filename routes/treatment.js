@@ -4,5 +4,7 @@ module.exports = function(app) {
     app.post('/treatment/text', treatment.GetTextResponse);
     app.post('/treatment/gpt3', treatment.GetGPT_3);
     app.post('/treatment/wiki', treatment.GetWiki);
+    app.post('/treatment/wiki/translate', treatment.GetWikiconversation);
+
 
 }
