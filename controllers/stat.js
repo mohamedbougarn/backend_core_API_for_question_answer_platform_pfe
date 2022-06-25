@@ -25,7 +25,9 @@ const Stat_msg_DateGet = (req, res)=>
 }
 
 
-//execute after the stat.js get count message per title  
+/**
+ * execute after the stat.js get count message per title
+ * */  
 const Top_msg_per_title =(request, response) => {
 
     p_id_client = request.body.id_client;
