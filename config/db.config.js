@@ -19,7 +19,7 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
 
 const db = {};
 
-db.Sequelize = Sequelize;
+//db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //require('../models/')(db,sequelize, Sequelize);
