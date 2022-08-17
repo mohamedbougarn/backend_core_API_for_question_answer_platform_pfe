@@ -17,16 +17,13 @@ const ClientGet =(request, response) => {
         logger.info(client)
         response.json(client)
     }).catch(err => {
-
         logger.error(err)
         response.status(500).json({msg: "error", details: err});
     });
-
 };
 
 
 const ClientAdd =(request, response) => {
-
     p_nom_client = request.body.nom_client;
     p_prenom_client = request.body.prenom_client;
     p_mobile_client = request.body.mobile_client;
